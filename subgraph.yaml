@@ -1,0 +1,71 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: BufferBNBOptions
+    network: bsc
+    source:
+      address: "0x1Ee5325eC7EEE1C8495E67B431e5D96BABfF965d"
+      abi: BufferBNBOptions
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - AutoExerciseStatusChange
+        - Create
+        - Exercise
+        - Expire
+        - OwnershipTransferred
+        - RoleAdminChanged
+        - RoleGranted
+        - RoleRevoked
+        - Transfer
+        - UpdateImpliedVolatility
+        - UpdateOptionCollaterizationRatio
+        - UpdateReferralRewardPercentage
+        - UpdateSettlementFeePercentage
+        - UpdateSettlementFeeRecipient
+        - UpdateStakingFeePercentage
+      abis:
+        - name: BufferBNBOptions
+          file: ./abis/BufferBNBOptions.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: AutoExerciseStatusChange(indexed address,bool)
+          handler: handleAutoExerciseStatusChange
+        - event: Create(indexed uint256,indexed address,uint256,uint256)
+          handler: handleCreate
+        - event: Exercise(indexed uint256,uint256)
+          handler: handleExercise
+        - event: Expire(indexed uint256,uint256)
+          handler: handleExpire
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
+          handler: handleRoleAdminChanged
+        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleGranted
+        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
+          handler: handleRoleRevoked
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdateImpliedVolatility(uint256)
+          handler: handleUpdateImpliedVolatility
+        - event: UpdateOptionCollaterizationRatio(uint256)
+          handler: handleUpdateOptionCollaterizationRatio
+        - event: UpdateReferralRewardPercentage(uint256)
+          handler: handleUpdateReferralRewardPercentage
+        - event: UpdateSettlementFeePercentage(uint256)
+          handler: handleUpdateSettlementFeePercentage
+        - event: UpdateSettlementFeeRecipient(address)
+          handler: handleUpdateSettlementFeeRecipient
+        - event: UpdateStakingFeePercentage(uint256)
+          handler: handleUpdateStakingFeePercentage
+      file: ./src/mapping.ts
